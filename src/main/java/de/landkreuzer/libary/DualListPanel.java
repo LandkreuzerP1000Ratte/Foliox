@@ -18,7 +18,7 @@ public class DualListPanel<T> extends JPanel {
         setLayout(new GridBagLayout());
 
         JPanel leftPanel = wrapInTitledPane(selectedTitle, selectedList);
-        leftPanel.setPreferredSize(new Dimension(70, 100));
+        leftPanel.setPreferredSize(new Dimension(170, 250));
 
         JPanel rightPanel = wrapInTitledPane(availableTitle, availableList);
         rightPanel.setPreferredSize(new Dimension(70, 50));

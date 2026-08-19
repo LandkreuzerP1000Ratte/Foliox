@@ -64,11 +64,11 @@ public class Main {
     public static JPopupMenu createContextMenu() {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem editItem = new JMenuItem("Bearbeiten");
+        JMenuItem editItem = new JMenuItem("Configure");
         editItem.addActionListener(e -> showEditLinePopupWindow(frame));
 
-        JMenuItem deleteItem = new JMenuItem("Löschen");
-        deleteItem.addActionListener(e -> System.out.println("Löschen geklickt"));
+        JMenuItem deleteItem = new JMenuItem("Delete");
+        deleteItem.addActionListener(e -> System.out.println("Clicked delete"));
 
         popupMenu.add(editItem);
         popupMenu.add(deleteItem);
@@ -85,13 +85,14 @@ public class Main {
     }
 
     public static void showEditLinePopupWindow(Frame owner) {
-        JDialog dialog = new JDialog(owner, "Spalten auswählen", true);
+        JDialog dialog = new JDialog(owner, "Colum selected", true);
         dialog.setSize(600, 500);
         dialog.setResizable(false);
         dialog.setLayout(new BorderLayout(10, 10));
 
 
-        DualListPanel<String> dualListPanel = new DualListPanel<>("Ausgewählt", "Verfügbar");
+        DualListPanel<String> dualListPanel = new DualListPanel<>("Selected", "Available");
+        dualListPanel.setFont(new Font("Segoe UI", Font.PLAIN, 20));
         dualListPanel.setItems(
                 List.of("Title", "Author"),
                 List.of("Publisher", "Borrowed", "Art", "ID")
@@ -100,11 +101,11 @@ public class Main {
 
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton ok = new JButton("OK");
-        JButton cancel = new JButton("Abbrechen");
+        JButton cancel = new JButton("discard");
 
         ok.addActionListener(e -> {
             List<String> result = dualListPanel.getSelectedItems();
-            System.out.println("Ausgewählte Spalten: " + result);
+            System.out.println("Selected colum: " + result);
             dialog.dispose();
         });
         cancel.addActionListener(e -> dialog.dispose());
@@ -121,7 +122,7 @@ public class Main {
     public static void main(String[] args) {
         FlatDarkLaf.setup(); // Modern dark design
 
-        frame = new JFrame("Bibliothek");
+        frame = new JFrame("Foliox");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
