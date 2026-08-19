@@ -9,12 +9,6 @@ import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.text.JTextComponent;
-import javax.swing.undo.UndoManager;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -45,6 +39,43 @@ public class Main {
         return lines;
     }
 
+    public static void attachContextMenu(JComponent component) {
+        JPopupMenu popupMenu = createContextMenu();
+
+        component.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                showPopupIfTriggered(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                showPopupIfTriggered(e);
+            }
+
+            private void showPopupIfTriggered(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+    }
+
+    public static JPopupMenu createContextMenu() {
+        JPopupMenu popupMenu = new JPopupMenu();
+
+        JMenuItem editItem = new JMenuItem("Bearbeiten");
+        editItem.addActionListener(e -> showEditLinePopupWindow(frame));
+
+        JMenuItem deleteItem = new JMenuItem("Löschen");
+        deleteItem.addActionListener(e -> System.out.println("Löschen geklickt"));
+
+        popupMenu.add(editItem);
+        popupMenu.add(deleteItem);
+
+        return popupMenu;
+    }
+
     public static List<String[]> parseLines(List<String> lines) {
         List<String[]> rows = new ArrayList<>();
         for (String line : lines) {
@@ -53,8 +84,42 @@ public class Main {
         return rows;
     }
 
+    public static void showEditLinePopupWindow(Frame owner) {
+        JDialog dialog = new JDialog(owner, "Spalten auswählen", true);
+        dialog.setSize(600, 500);
+        dialog.setResizable(false);
+        dialog.setLayout(new BorderLayout(10, 10));
+
+
+        DualListPanel<String> dualListPanel = new DualListPanel<>("Ausgewählt", "Verfügbar");
+        dualListPanel.setItems(
+                List.of("Title", "Author"),
+                List.of("Publisher", "Borrowed", "Art", "ID")
+        );
+        dialog.add(dualListPanel, BorderLayout.CENTER);
+
+        JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton ok = new JButton("OK");
+        JButton cancel = new JButton("Abbrechen");
+
+        ok.addActionListener(e -> {
+            List<String> result = dualListPanel.getSelectedItems();
+            System.out.println("Ausgewählte Spalten: " + result);
+            dialog.dispose();
+        });
+        cancel.addActionListener(e -> dialog.dispose());
+
+        bottom.add(ok);
+        bottom.add(cancel);
+        dialog.add(bottom, BorderLayout.SOUTH);
+
+        dialog.setLocationRelativeTo(owner);
+        dialog.setVisible(true);
+    }
+
+
     public static void main(String[] args) {
-        FlatDarkLaf.setup(); // Modernes dunkles Design aktivieren
+        FlatDarkLaf.setup(); // Modern dark design
 
         frame = new JFrame("Bibliothek");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,16 +139,17 @@ public class Main {
         JTable table = new JTable(rowData, columns);
         table.setShowGrid(true);
 
-        // Wichtig: Tabelle in ein ScrollPane setzen für die Kopfzeile
+        attachContextMenu(table);
+
         JScrollPane scrollPane = new JScrollPane(table);
         frame.add(scrollPane, BorderLayout.CENTER);
 
-        // Das ausklappbare Seitenmenü
+        // Sidemenu
         sideMenu = buildSideMenu();
-        sideMenu.setVisible(false); // Standardmäßig eingeklappt
+        sideMenu.setVisible(false);
         frame.add(sideMenu, BorderLayout.EAST);
 
-        // Toggle-Button oben
+        // Toggle-button
         JButton toggleButton = new JButton("☰ Menü");
         toggleButton.addActionListener(e -> {
             sideMenu.setVisible(!sideMenu.isVisible());
@@ -95,7 +161,6 @@ public class Main {
         toolBar.add(toggleButton);
         frame.add(toolBar, BorderLayout.NORTH);
 
-        // pack() NICHT aufrufen, sonst überschreibt es setSize()
         frame.setSize(1500, 1000);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
