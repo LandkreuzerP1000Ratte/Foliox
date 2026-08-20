@@ -14,30 +14,30 @@ public class DualListPanel<T> extends JPanel {
     private final JList<T> selectedList = new JList<>(selectedModel);
     private final JList<T> availableList = new JList<>(availableModel);
 
+
     public DualListPanel(String selectedTitle, String availableTitle) {
         setLayout(new GridBagLayout());
 
         JPanel leftPanel = wrapInTitledPane(selectedTitle, selectedList);
-        leftPanel.setPreferredSize(new Dimension(170, 250));
+        leftPanel.setPreferredSize(new Dimension(185, 270));
 
         JPanel rightPanel = wrapInTitledPane(availableTitle, availableList);
-        rightPanel.setPreferredSize(new Dimension(70, 50));
+        rightPanel.setPreferredSize(new Dimension(185, 270));
 
         JPanel buttonPanel = buildButtonPanel();
 
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.BOTH;
 
-
-        gbc.anchor = NORTHWEST; gbc.gridy = 0; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = NORTHWEST; gbc.gridy = 0; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
         add(leftPanel, gbc);
 
         gbc.gridx = 1; gbc.weightx = 0; gbc.weighty = 0; gbc.fill = GridBagConstraints.NONE;
         add(buttonPanel, gbc);
 
-        gbc.gridx = 2; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 2; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
         add(rightPanel, gbc);
     }
 
@@ -49,13 +49,12 @@ public class DualListPanel<T> extends JPanel {
         available.forEach(availableModel::addElement);
     }
 
-
     public java.util.List<T> getSelectedItems() {
         return java.util.Collections.list(selectedModel.elements());
     }
 
     private JPanel buildButtonPanel() {
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 5, 5));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 0, 5));
 
         JButton up = new JButton("↑");
         up.setPreferredSize(new Dimension (25, 25));
@@ -68,9 +67,6 @@ public class DualListPanel<T> extends JPanel {
 
         JButton toAvailable = new JButton("→");
         toAvailable.setPreferredSize(new Dimension (25, 25));
-
-
-
 
         buttonPanel.add(up);
         buttonPanel.add(down);
@@ -109,7 +105,7 @@ public class DualListPanel<T> extends JPanel {
     }
 
     private JPanel wrapInTitledPane(String title, JList<T> list) {
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout(0, 4)); // hgap=0, vgap=8
         panel.add(new JLabel(title), BorderLayout.NORTH);
         list.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         panel.add(new JScrollPane(list), BorderLayout.CENTER);

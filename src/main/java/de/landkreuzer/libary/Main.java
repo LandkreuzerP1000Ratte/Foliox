@@ -86,7 +86,7 @@ public class Main {
 
     public static void showEditLinePopupWindow(Frame owner) {
         JDialog dialog = new JDialog(owner, "Colum selected", true);
-        dialog.setSize(600, 500);
+        dialog.setSize(475, 500);
         dialog.setResizable(false);
         dialog.setLayout(new BorderLayout(10, 10));
 
