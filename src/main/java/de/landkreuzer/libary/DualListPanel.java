@@ -27,18 +27,11 @@ public class DualListPanel<T> extends JPanel {
         JPanel buttonPanel = buildButtonPanel();
 
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.BOTH;
+        BoxLayout gbc = new BoxLayout();
 
-        gbc.anchor = NORTHWEST; gbc.gridy = 0; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(leftPanel, gbc);
-
-        gbc.gridx = 1; gbc.weightx = 0; gbc.weighty = 0; gbc.fill = GridBagConstraints.NONE;
-        add(buttonPanel, gbc);
-
-        gbc.gridx = 2; gbc.weightx = 1; gbc.weighty = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(rightPanel, gbc);
+        add(leftPanel, BorderLayout.WEST);
+        add(buttonPanel, BorderLayout.CENTER);
+        add(rightPanel, BorderLayout.EAST);
     }
 
 
