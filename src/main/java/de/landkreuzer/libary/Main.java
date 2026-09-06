@@ -91,21 +91,21 @@ public class Main {
         dialog.setLayout(new BorderLayout(10, 10));
 
 
-        DualListPanel<String> dualListPanel = new DualListPanel<>("Selected", "Available");
-        dualListPanel.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-        dualListPanel.setItems(
+        CopyConfigs<String> copyConfigs = new CopyConfigs<>("Selected", "Available");
+        copyConfigs.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        copyConfigs.setItems(
                 List.of("Title", "Author"),
                 List.of("Publisher", "Borrowed", "Art", "ID")
         );
-        dialog.add(dualListPanel, BorderLayout.CENTER);
+        dialog.add(copyConfigs, BorderLayout.CENTER);
 
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton ok = new JButton("OK");
         JButton cancel = new JButton("discard");
 
         ok.addActionListener(e -> {
-            List<String> result = dualListPanel.getSelectedItems();
-            System.out.println("Selected colum: " + result);
+            List<String> result = copyConfigs.getSelectedItems();
+            System.out.println("Selected column: " + result);
             dialog.dispose();
         });
         cancel.addActionListener(e -> dialog.dispose());
