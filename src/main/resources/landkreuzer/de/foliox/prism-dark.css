@@ -1,0 +1,321 @@
+/* Prism-Launcher-Stil für JavaFX (v2)
+   Einbinden: scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
+   Datei gehört nach: src/main/resources/com/example/foliox/
+*/
+
+/* ===== Grundfarben ===== */
+.root {
+    -fx-base: #1e1e1e;
+    -fx-background: #1e1e1e;
+    -fx-control-inner-background: #232323;
+    -fx-control-inner-background-alt: #282828;
+    -fx-accent: #a3d95c;
+    -fx-focus-color: #a3d95c;
+    -fx-faint-focus-color: transparent;
+    -fx-text-base-color: #e0e0e0;
+    -fx-text-background-color: #e0e0e0;
+    -fx-selection-bar: #3b5c27;
+    -fx-selection-bar-non-focused: #2f4a1f;
+    -fx-selection-bar-text: white;
+    -fx-font-family: "Noto Sans", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+}
+
+.label {
+    -fx-text-fill: #e0e0e0;
+}
+
+.label.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ===== Textfelder ===== */
+.text-field, .text-area, .password-field {
+    -fx-background-color: #232323;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #6b6b6b;
+    -fx-highlight-fill: #3b5c27;
+    -fx-highlight-text-fill: white;
+    -fx-background-radius: 4;
+    -fx-border-color: #2c2c2c;
+    -fx-border-radius: 4;
+    -fx-padding: 6 8;
+}
+
+.text-field:focused, .text-area:focused, .password-field:focused {
+    -fx-border-color: #a3d95c;
+}
+
+.text-area .content {
+    -fx-background-color: #232323;
+}
+
+/* ===== Buttons ===== */
+.button {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 4;
+    -fx-border-color: #3a3a3a;
+    -fx-border-radius: 4;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #363636;
+}
+
+.button:pressed {
+    -fx-background-color: #202020;
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+}
+
+.button.primary,
+.button:default {
+    -fx-background-color: #2f4a1f;
+    -fx-border-color: #a3d95c;
+    -fx-text-fill: white;
+}
+
+.button.primary:hover,
+.button:default:hover {
+    -fx-background-color: #3b5c27;
+}
+
+/* ===== ListView / Sidebar ===== */
+.list-view {
+    -fx-background-color: #191919;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 8 12;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #2a2a2a;
+}
+
+.list-cell:filled:selected,
+.list-cell:filled:selected:hover {
+    -fx-background-color: #3b5c27;
+    -fx-text-fill: white;
+}
+
+/* ===== TableView ===== */
+.table-view {
+    -fx-background-color: #232323;
+    -fx-border-color: #2c2c2c;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #232323;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #232323;
+    -fx-border-color: transparent transparent #2c2c2c transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #e0e0e0;
+    -fx-alignment: center-left;
+}
+
+.table-row-cell {
+    -fx-background-color: #232323;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #282828;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: #2f2f2f;
+}
+
+.table-row-cell:filled:selected,
+.table-row-cell:filled:selected:hover,
+.table-row-cell:filled:selected:odd {
+    -fx-background-color: #9cd255;
+}
+
+.table-cell {
+    -fx-text-fill: #e0e0e0;
+}
+
+.table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* ===== CheckBox / RadioButton ===== */
+.check-box .box,
+.radio-button .radio {
+    -fx-background-color: #2c2c2c;
+    -fx-border-color: #3a3a3a;
+    -fx-background-radius: 3;
+}
+
+.radio-button .radio {
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #a3d95c;
+}
+
+.radio-button:selected .dot {
+    -fx-background-color: #a3d95c;
+}
+
+.check-box .label,
+.radio-button .label {
+    -fx-text-fill: #e0e0e0;
+}
+
+/* ===== ComboBox ===== */
+.combo-box {
+    -fx-background-color: #232323;
+    -fx-border-color: #2c2c2c;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #e0e0e0;
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #232323;
+    -fx-border-color: #3a3a3a;
+}
+
+.combo-box-popup .list-cell:filled:selected,
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: #3b5c27;
+    -fx-text-fill: white;
+}
+
+/* ===== Scrollbars ===== */
+.scroll-bar {
+    -fx-background-color: #232323;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 12;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 12;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #232323;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #6b6b6b;
+    -fx-background-radius: 6;
+    -fx-background-insets: 2;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #a3d95c;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #9cd255;
+}
+
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+.scroll-pane {
+    -fx-background-color: #232323;
+}
+
+/* ===== Tabs ===== */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #191919;
+}
+
+.tab {
+    -fx-background-color: #232323;
+}
+
+.tab:selected {
+    -fx-background-color: #3b5c27;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #e0e0e0;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* ===== Menü / Tooltip ===== */
+.tooltip {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 4;
+}
+
+.context-menu,
+.menu-bar {
+    -fx-background-color: #232323;
+}
+
+.menu-item .label {
+    -fx-text-fill: #e0e0e0;
+}
+
+.menu-item:focused {
+    -fx-background-color: #3b5c27;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+/* ===== ProgressBar ===== */
+.progress-bar .track {
+    -fx-background-color: #2c2c2c;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #a3d95c;
+    -fx-background-radius: 4;
+}
+
+/* ===== Eigene Helfer-Klassen ===== */
+.panel {
+    -fx-background-color: #232323;
+    -fx-border-color: #2c2c2c;
+    -fx-border-radius: 4;
+    -fx-padding: 10;
+}
+
+.sidebar {
+    -fx-background-color: #191919;
+}
