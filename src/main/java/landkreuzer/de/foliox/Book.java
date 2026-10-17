@@ -1,4 +1,4 @@
-package com.example.foliox;
+package landkreuzer.de.foliox;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
