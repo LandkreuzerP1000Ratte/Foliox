@@ -2,11 +2,19 @@ plugins {
     java
     application
     id("org.javamodularity.moduleplugin") version "1.8.15"
+<<<<<<< HEAD
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "3.0.1"
 }
 
 group = "landkreuzer.de"
+=======
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("org.beryx.jlink") version "2.25.0"
+}
+
+group = "com.example"
+>>>>>>> 0be258720e94d0f87b37cdd1c3301c07da61cca4
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -50,4 +58,8 @@ jlink {
     launcher {
         name = "app"
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0be258720e94d0f87b37cdd1c3301c07da61cca4
