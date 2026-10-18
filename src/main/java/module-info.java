@@ -1,8 +1,8 @@
-module com.example.foliox {
+module landkreuzer.de.foliox {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.foliox to javafx.fxml;
-    exports com.example.foliox;
+    opens landkreuzer.de.foliox to javafx.fxml;
+    exports landkreuzer.de.foliox;
 }

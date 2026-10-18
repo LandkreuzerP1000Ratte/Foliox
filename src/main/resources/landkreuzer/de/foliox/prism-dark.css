@@ -154,8 +154,9 @@
     -fx-text-fill: #e0e0e0;
 }
 
+
 .table-row-cell:filled:selected .table-cell {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 /* ===== CheckBox / RadioButton ===== */
@@ -224,24 +225,13 @@
 }
 
 .scroll-bar .track {
-    -fx-background-color: #232323;
+    -fx-background-color: #ba2020;
     -fx-border-color: transparent;
-    -fx-background-radius: 0;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: #6b6b6b;
-    -fx-background-radius: 6;
-    -fx-background-insets: 2;
 }
-.scroll-bar .thumb:hover {
-    -fx-background-color: #a3d95c;
-}
-
-.scroll-bar .thumb:pressed {
-    -fx-background-color: #9cd255;
-}
-
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow {

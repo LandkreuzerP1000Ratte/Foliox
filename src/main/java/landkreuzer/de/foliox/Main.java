@@ -21,9 +21,7 @@ import java.util.Scanner;
 public class Main extends Application {
 
     private final ArrayList<String> tableColumns = new ArrayList<>(List.of("Barcode", "Titel", "Autor", "Verlag"));
-
     Group root = new Group();
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -45,18 +43,19 @@ public class Main extends Application {
             return data;
 
         } catch (FileNotFoundException e) {
+            System.out.println("File not found");
             e.printStackTrace();
             return new String[0][0];
         }
     }
 //---------------------------------------------------------------------------------------
 
-    public void createTable(double posX, double posY, double width, double height, ArrayList<String> tableColoumns, String[][] tableContens) {
+    public void createTable(double posX, double posY, double width, double height, Group parent, ArrayList<String> tableColoumns, String[][] tableContens) {
         Pane tablePane = new Pane();
         TableView<String[]> tableV1 = new TableView<>();
 
         tableV1.setPrefSize(width, height);
-        tableV1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+        tableV1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_LAST_COLUMN);
 
         for (int i = 0; i < tableColoumns.size(); i++) {
             final int colIndex = i;
@@ -72,7 +71,7 @@ public class Main extends Application {
 
         tablePane.getChildren().addAll(tableV1);
         tablePane.relocate(posX, posY);
-        root.getChildren().add(tablePane);
+        parent.getChildren().add(tablePane);
     }
 
 //---------------------------------------------------------------------------------------
@@ -85,9 +84,9 @@ public class Main extends Application {
         Stage stage = new Stage();
 
         String bookFilePath = System.getProperty("user.dir");
-        File filePath = new File(bookFilePath.concat("/src/main/java/com/example/foliox/formated_books.txt"));
+        File filePath = new File(bookFilePath.concat("/src/main/java/landkreuzer/de/foliox/formated_books.txt"));
 
-        createTable(100, 100, 900, 300, tableColumns, readFileContentForTable(filePath));
+        createTable(100, 100, 900, 300, root, tableColumns, readFileContentForTable(filePath));
 
         stage.setScene(scene);
         stage.show();
