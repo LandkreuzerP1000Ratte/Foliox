@@ -81,14 +81,17 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
+
         Stage stage = new Stage();
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
+        stage.setScene(scene);
 
         String bookFilePath = System.getProperty("user.dir");
         File filePath = new File(bookFilePath.concat("/src/main/java/landkreuzer/de/foliox/formated_books.txt"));
 
         createTable(100, 100, 900, 300, root, tableColumns, readFileContentForTable(filePath));
 
-        stage.setScene(scene);
         stage.show();
     }
 }

@@ -214,6 +214,8 @@
     -fx-background-color: #232323;
     -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-block-increment: 1000;
+    -fx-unit-increment: 2;
 }
 
 .scroll-bar:vertical {
@@ -229,8 +231,22 @@
     -fx-border-color: transparent;
 }
 
-.scroll-bar .thumb {
-    -fx-background-color: #6b6b6b;
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #565656, #3f3f3f;
+    -fx-background-insets: 0, 1 0 1 1;
+    -fx-background-radius: 0;
+    -fx-shape: null;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #565656, #3f3f3f;
+    -fx-background-insets: 0, 0 0 0 1;
+    -fx-background-radius: 0;
+    -fx-shape: null;
+}
+
+.table-view .scroll-bar:horizontal  .thumb {
+    -fx-min-height: 40px;
 }
 
 .scroll-bar .increment-arrow,
