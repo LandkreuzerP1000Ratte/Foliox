@@ -3,12 +3,15 @@ package landkreuzer.de.foliox;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,17 +19,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class Main extends Application {
 
-    private final ArrayList<String> tableColumns = new ArrayList<>(List.of("Barcode", "Titel", "Autor", "Verlag"));
-    Group root = new Group();
+    private final ArrayList<String> tableColumns =
+            new ArrayList<>(List.of("Barcode", "Titel", "Autor", "Verlag"));
+
     public static void main(String[] args) {
         launch(args);
     }
-
-//---------------------------------------------------------------------------------------
 
     public String[][] readFileContentForTable(File filePath) {
         try (Scanner reader = new Scanner(filePath)) {
@@ -34,8 +34,7 @@ public class Main extends Application {
 
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                String[] fields = line.split(" \\| ");
-                rows.add(fields);
+                rows.add(line.split(" \\| "));
             }
 
             String[][] data = rows.toArray(new String[0][]);
@@ -48,50 +47,48 @@ public class Main extends Application {
             return new String[0][0];
         }
     }
-//---------------------------------------------------------------------------------------
 
-    public void createTable(double posX, double posY, double width, double height, Group parent, ArrayList<String> tableColoumns, String[][] tableContens) {
-        Pane tablePane = new Pane();
-        TableView<String[]> tableV1 = new TableView<>();
+    public TableView<String[]> createTable(ArrayList<String> columns, String[][] contents) {
+        TableView<String[]> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        tableV1.setPrefSize(width, height);
-        tableV1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_LAST_COLUMN);
-
-        for (int i = 0; i < tableColoumns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             final int colIndex = i;
-            TableColumn<String[], String> column = new TableColumn<>(tableColoumns.get(i));
+            TableColumn<String[], String> column = new TableColumn<>(columns.get(i));
             column.setCellValueFactory(cell -> {
                 String[] row = cell.getValue();
                 String value = colIndex < row.length ? row[colIndex] : "";
                 return new SimpleStringProperty(value);
             });
-            tableV1.getColumns().add(column);
+            table.getColumns().add(column);
         }
-        tableV1.setItems(FXCollections.observableArrayList(tableContens));
 
-        tablePane.getChildren().addAll(tableV1);
-        tablePane.relocate(posX, posY);
-        parent.getChildren().add(tablePane);
+        table.setItems(FXCollections.observableArrayList(contents));
+        return table;
     }
 
-//---------------------------------------------------------------------------------------
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+        File bookFile = new File(System.getProperty("user.dir"),
+                "src/main/java/landkreuzer/de/foliox/formated_books.txt");
 
-        Scene scene = new Scene(root);
+        ScenePanel sidebar = new ScenePanel();
+
+        TableView<String[]> table = createTable(tableColumns, readFileContentForTable(bookFile));
+        StackPane content = new StackPane(table);
+        content.setPadding(new Insets(20));
+
+        BorderPane root = new BorderPane();
+        root.setLeft(sidebar);
+        root.setCenter(content);
+
+        Scene scene = new Scene(root, 1200, 800, Color.web("#313131"));
         scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
 
-        Stage stage = new Stage();
-        stage.setFullScreen(true);
-        stage.setFullScreenExitHint("");
-        stage.setScene(scene);
-
-        String bookFilePath = System.getProperty("user.dir");
-        File filePath = new File(bookFilePath.concat("/src/main/java/landkreuzer/de/foliox/formated_books.txt"));
-
-        createTable(100, 100, 900, 300, root, tableColumns, readFileContentForTable(filePath));
-
-        stage.show();
+        primaryStage.setTitle("Folio X");
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("");
+        primaryStage.show();
     }
 }
