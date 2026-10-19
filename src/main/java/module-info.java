@@ -1,5 +1,6 @@
 module landkreuzer.de.foliox {
     requires javafx.controls;
+    requires javafx.graphics;
     requires javafx.fxml;
 
 

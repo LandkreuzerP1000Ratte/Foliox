@@ -290,10 +290,6 @@
     -fx-text-fill: #e0e0e0;
 }
 
-.menu-item:focused {
-    -fx-background-color: #3b5c27;
-}
-
 .menu-item:focused .label {
     -fx-text-fill: white;
 }
