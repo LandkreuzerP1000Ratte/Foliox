@@ -35,7 +35,6 @@
     -fx-background-color: #232323;
     -fx-text-fill: #e0e0e0;
     -fx-prompt-text-fill: #6b6b6b;
-    -fx-highlight-fill: #3b5c27;
     -fx-highlight-text-fill: white;
     -fx-background-radius: 4;
     -fx-border-color: #2c2c2c;
@@ -76,14 +75,12 @@
 
 .button.primary,
 .button:default {
-    -fx-background-color: #2f4a1f;
     -fx-border-color: #a3d95c;
     -fx-text-fill: white;
 }
 
 .button.primary:hover,
 .button:default:hover {
-    -fx-background-color: #3b5c27;
 }
 
 /* ===== ListView / Sidebar ===== */
@@ -105,7 +102,6 @@
 
 .list-cell:filled:selected,
 .list-cell:filled:selected:hover {
-    -fx-background-color: #3b5c27;
     -fx-text-fill: white;
 }
 
@@ -205,7 +201,6 @@
 
 .combo-box-popup .list-cell:filled:selected,
 .combo-box-popup .list-cell:filled:hover {
-    -fx-background-color: #3b5c27;
     -fx-text-fill: white;
 }
 
@@ -260,10 +255,6 @@
 
 .tab {
     -fx-background-color: #232323;
-}
-
-.tab:selected {
-    -fx-background-color: #3b5c27;
 }
 
 .tab .tab-label {

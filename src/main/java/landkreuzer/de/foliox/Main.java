@@ -1,6 +1,52 @@
 package landkreuzer.de.foliox;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+// Kommentare sind überbewertet
+
+public class Main extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        BorderPane root = new BorderPane();
+
+        Scene scene = new Scene(root, 1200, 800, Color.web("#313131"));
+        scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
+
+        primaryStage.setTitle("Foliox");
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("");
+        primaryStage.show();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -48,31 +94,14 @@ public class Main extends Application {
         }
     }
 
-    public TableView<String[]> createTable(ArrayList<String> columns, String[][] contents) {
-        TableView<String[]> table = new TableView<>();
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        for (int i = 0; i < columns.size(); i++) {
-            final int colIndex = i;
-            TableColumn<String[], String> column = new TableColumn<>(columns.get(i));
-            column.setCellValueFactory(cell -> {
-                String[] row = cell.getValue();
-                String value = colIndex < row.length ? row[colIndex] : "";
-                return new SimpleStringProperty(value);
-            });
-            table.getColumns().add(column);
-        }
-
-        table.setItems(FXCollections.observableArrayList(contents));
-        return table;
-    }
 
     @Override
     public void start(Stage primaryStage) {
         File bookFile = new File(System.getProperty("user.dir"),
                 "src/main/java/landkreuzer/de/foliox/formated_books.txt");
 
-        ScenePanel sidebar = new ScenePanel();
+        StagePanel sidebar = new StagePanel();dis
 
         TableView<String[]> table = createTable(tableColumns, readFileContentForTable(bookFile));
         StackPane content = new StackPane(table);
@@ -91,4 +120,4 @@ public class Main extends Application {
         primaryStage.setFullScreenExitHint("");
         primaryStage.show();
     }
-}
+} */

@@ -1,7 +1,7 @@
 module landkreuzer.de.foliox {
-    requires javafx.controls;
-    requires javafx.graphics;
     requires javafx.fxml;
+    requires javafx.controls;
+    requires jdk.javadoc;
 
 
     opens landkreuzer.de.foliox to javafx.fxml;
