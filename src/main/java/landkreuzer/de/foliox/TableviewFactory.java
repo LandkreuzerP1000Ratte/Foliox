@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import static jdk.javadoc.internal.doclint.DocLint.SEPARATOR;
 
 public final class TableviewFactory {
 
@@ -36,7 +35,7 @@ public final class TableviewFactory {
     public static void save(TableView<String[]> table, File file) throws IOException {
         List<String> lines =  new ArrayList<>();
         for (String[] row : table.getItems()) {
-            lines.add(String.join(SEPARATOR, row));
+            lines.add(String.join(" | ", row));
         }
     }
 }

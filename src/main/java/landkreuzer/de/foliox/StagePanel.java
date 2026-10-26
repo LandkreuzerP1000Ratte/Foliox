@@ -1,22 +1,24 @@
 package landkreuzer.de.foliox;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+
+import java.util.Map;
 
 public class StagePanel extends ListView<StagePanel.Entry> {
 
     public record Entry(String name) {}
 
-    public StagePanel() {
-        getItems().addAll(
-                new Entry("Bücher"),
-                new Entry("Schüler"),
-                new Entry("Öffnungszeiten"),
-                new Entry("Einstellungen")
-        );
+    public StagePanel(BorderPane root, Map<String, Node> pages) {
+        for (String name : pages.keySet()) {
+            getItems().add(new Entry(name));
+        }
 
         setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -28,10 +30,16 @@ public class StagePanel extends ListView<StagePanel.Entry> {
                     return;
                 }
 
-                    HBox topBox = new HBox(10, new Label(item.name()));
-                    topBox.setAlignment(Pos.CENTER_LEFT);
-                    setGraphic(topBox);
-                }
+                HBox box = new HBox(new Label(item.name()));
+                box.setAlignment(Pos.CENTER_LEFT);
+                setGraphic(box);
+            }
+        });
+
+        getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                root.setCenter(pages.get(newVal.name()));
+            }
         });
 
         setPrefWidth(170);
