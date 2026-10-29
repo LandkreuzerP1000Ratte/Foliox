@@ -17,7 +17,7 @@ public final class TableviewFactory {
         TableView<String[]> table = new TableView<>();
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
-        for (int i = 0; i < columns.size(); i++) {
+   s     for (int i = 0; i < columns.size(); i++) {
             final int colIndex = i;
             TableColumn<String[], String> column = new TableColumn<>(columns.get(i));
             column.setCellValueFactory(cell -> {

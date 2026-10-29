@@ -94,9 +94,12 @@ public class Main extends Application {
         pages.put("Öffnungszeiten", new Label("Öffnungszeiten kommt noch"));
         pages.put("Einstellungen", new Label("Einstellungen kommt noch"));
 
+        table.setMinWidth(0);
+        table.setPrefWidth(750);
+
         root.setLeft(new StagePanel(root, pages));
         root.setCenter(table);
-        root.setRight(TableviewSidepanelBook.create());
+        root.setRight(TableviewSidepanelBook.create("76450081.png", visibleColumns));
 
         primaryStage.setTitle("Foliox");
         primaryStage.setScene(scene);

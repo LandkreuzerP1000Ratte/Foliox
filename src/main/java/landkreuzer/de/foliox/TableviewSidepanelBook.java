@@ -1,10 +1,10 @@
 package landkreuzer.de.foliox;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,21 +14,27 @@ public class TableviewSidepanelBook extends ListView<TableviewSidepanelBook.Entr
     public record Entry(String name) {}
     private Image cover;
 
-    public static TableviewSidepanelBook create(File imageCover, ArrayList<String> basicInfo) {
+    public static TableviewSidepanelBook create(String imageCover, ArrayList<String> basicInfo) {
         TableviewSidepanelBook infoTable = new TableviewSidepanelBook();
 
-        HBox box = new HBox();
-        if (infoTable.cover != null) {
-            ImageView coverView = new ImageView(infoTable.cover);
-            coverView.setFitWidth(120);
-            coverView.setPreserveRatio(true);
-            box.getChildren().add(coverView);
-            box.setAlignment(Pos.CENTER_LEFT);
+        String url = String.valueOf(TableviewSidepanelBook.class.getResource("/landkreuzer/de/foliox/" + imageCover));
+
+        System.out.println(imageCover + "end");
+        System.out.println(url);
+
+
+        ImageView img = null;
+
+        if (imageCover != null) {
+            infoTable.cover = new Image(url);
+            img = new ImageView(infoTable.cover);
         }
 
-        /*for (String info : basicInfo) {
-            infoTable.getItems().add(new Entry(info));
-        }*/
+        VBox box = new VBox();
+        box.setMinWidth(400);
+        box.getChildren().addAll(img);
+
+
         return infoTable;
     }
 }
