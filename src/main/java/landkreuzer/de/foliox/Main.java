@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -16,6 +17,8 @@ public class Main extends Application {
 
     // 1 = Spalte anzeigen, 0 = Spalte ausblenden
     private static final String COLUMN_PATTERN = "01111";
+
+    private static Scene scene;
 
     public static void main(String[] args) {
         launch(args);
@@ -73,10 +76,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        BorderPane root = new BorderPane();
-
-        Scene scene = new Scene(root, 1200, 800, Color.web("#313131"));
-        scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
 
         File bookFile = new File(System.getProperty("user.dir"),
                 "src/main/resources/landkreuzer/de/foliox/formated_books.txt");
@@ -88,18 +87,25 @@ public class Main extends Application {
 
         TableView<String[]> table = TableviewFactory.create(visibleColumns, visibleValues);
 
+        BorderPane root = new BorderPane();
+
+        table.setMinWidth(400);
+
+        scene = new Scene(root, 1200, 800, Color.web("#313131"));
+        scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
+
+        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("76450081.png", visibleColumns));
+        split.setDividerPositions(0.9);
+
         Map<String, Node> pages = new LinkedHashMap<>();
-        pages.put("Bücher", table);
+        pages.put("Bücher", split);
         pages.put("Schüler", new Label("Schüler kommt noch"));
         pages.put("Öffnungszeiten", new Label("Öffnungszeiten kommt noch"));
         pages.put("Einstellungen", new Label("Einstellungen kommt noch"));
 
-        table.setMinWidth(0);
-        table.setPrefWidth(750);
-
         root.setLeft(new StagePanel(root, pages));
-        root.setCenter(table);
-        root.setRight(TableviewSidepanelBook.create("76450081.png", visibleColumns));
+        root.setCenter(split);
+
 
         primaryStage.setTitle("Foliox");
         primaryStage.setScene(scene);

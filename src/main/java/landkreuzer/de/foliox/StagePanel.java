@@ -35,14 +35,20 @@ public class StagePanel extends ListView<StagePanel.Entry> {
             }
         });
 
+
+
         getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 root.setCenter(pages.get(newVal.name()));
             }
         });
 
+        getSelectionModel().selectFirst();
+
+
+
         setPrefWidth(170);
-        setFocusTraversable(false);
+        setFocusTraversable(true);
         getStyleClass().add("sidebar");
     }
 }

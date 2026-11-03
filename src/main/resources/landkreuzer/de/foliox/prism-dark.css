@@ -155,6 +155,10 @@
     -fx-text-fill: black;
 }
 
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
+
 /* ===== CheckBox / RadioButton ===== */
 .check-box .box,
 .radio-button .radio {
