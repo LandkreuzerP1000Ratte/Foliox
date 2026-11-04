@@ -94,7 +94,7 @@ public class Main extends Application {
         scene = new Scene(root, 1200, 800, Color.web("#313131"));
         scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
 
-        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("76450081.png", visibleColumns));
+        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("bildoderso.png", visibleColumns));
         split.setDividerPositions(0.9);
 
         Map<String, Node> pages = new LinkedHashMap<>();
