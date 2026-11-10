@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class TableviewSidepanelBook {
 
     public static VBox create(String imageCover, ArrayList<String> basicInfo) {
+        System.out.println(basicInfo);
         VBox vBox = new VBox(10);
         vBox.setFillWidth(true);
         vBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("Green"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -36,13 +37,12 @@ public class TableviewSidepanelBook {
         VBox betterVBox = new VBox();
         betterVBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("Blue"), CornerRadii.EMPTY, Insets.EMPTY)));
         for (int i = 0; i < basicInfo.size(); i++) {
-            switch (i) {
-                case 0,
+            //switch (i) {
+              //  case 0,
             }
             Label label = new Label();
             betterVBox.getChildren().add(label);
 
-        }
         hBox.getChildren().add(betterVBox);
         vBox.getChildren().add(hBox);
 

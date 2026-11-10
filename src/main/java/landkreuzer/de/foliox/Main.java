@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main extends Application {
@@ -35,6 +36,7 @@ public class Main extends Application {
                 String line = reader.nextLine();
                 rows.add(line.split(" \\| "));
             }
+
 
             String[][] data = rows.toArray(new String[0][]);
             return data;
@@ -81,6 +83,7 @@ public class Main extends Application {
                 "src/main/resources/landkreuzer/de/foliox/formated_books.txt");
 
         String[][] allRows = readFileContentForTable(bookFile);
+        System.out.println(allRows);
 
         ArrayList<String> visibleColumns = filterColumnNames(tableColumns, COLUMN_PATTERN);
         String[][] visibleValues = filterColumnValues(allRows, COLUMN_PATTERN);
