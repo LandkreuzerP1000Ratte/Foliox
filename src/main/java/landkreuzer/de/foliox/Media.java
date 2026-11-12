@@ -1,5 +1,11 @@
 package landkreuzer.de.foliox;
 
+import landkreuzer.de.foliox.Enum.MediaCategory;
+import landkreuzer.de.foliox.Enum.MediaType;
+import landkreuzer.de.foliox.Enum.MediaLanguage;
+import landkreuzer.de.foliox.Enum.MediaCondition;
+
+
 import java.util.UUID;
 
 public record Media(

@@ -1,4 +1,4 @@
-package landkreuzer.de.foliox;
+package landkreuzer.de.foliox.Enum;
 
 public enum MediaLanguage {
     DEUTSCH("Deutsch"),

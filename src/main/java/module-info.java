@@ -7,4 +7,6 @@ module landkreuzer.de.foliox {
 
     opens landkreuzer.de.foliox to javafx.fxml;
     exports landkreuzer.de.foliox;
+    exports landkreuzer.de.foliox.Enum;
+    opens landkreuzer.de.foliox.Enum to javafx.fxml;
 }
