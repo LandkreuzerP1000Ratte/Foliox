@@ -35,8 +35,6 @@ public class StagePanel extends ListView<StagePanel.Entry> {
             }
         });
 
-
-
         getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 root.setCenter(pages.get(newVal.name()));
@@ -44,8 +42,6 @@ public class StagePanel extends ListView<StagePanel.Entry> {
         });
 
         getSelectionModel().selectFirst();
-
-
 
         setPrefWidth(170);
         setFocusTraversable(true);
