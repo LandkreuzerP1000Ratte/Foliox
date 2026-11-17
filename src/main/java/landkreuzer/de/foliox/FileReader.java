@@ -32,9 +32,5 @@ public final class FileReader {
             e.printStackTrace();
             return new String[0][0];
         }
-
     }
-
-
-
 }
