@@ -1,9 +1,13 @@
 package landkreuzer.de.foliox;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,9 +33,14 @@ public final class TableviewFactory {
         }
 
         table.setItems(FXCollections.observableArrayList(contents));
+
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldItem, newItem) -> {
+            Media selectedMediaContent = new Media();
+        });
+
+
         return table;
     }
-
     public static void save(TableView<String[]> table, File file) throws IOException {
         List<String> lines =  new ArrayList<>();
         for (String[] row : table.getItems()) {
