@@ -1,17 +1,16 @@
 package landkreuzer.de.foliox;
 
-import javafx.beans.property.ObjectProperty;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class TableviewFactory {
 
@@ -35,7 +34,10 @@ public final class TableviewFactory {
         table.setItems(FXCollections.observableArrayList(contents));
 
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldItem, newItem) -> {
-            Media selectedMediaContent = new Media();
+
+            System.out.println(Arrays.toString(newItem));
+
+            //Media selectedMediaContent = new Media();
         });
 
 

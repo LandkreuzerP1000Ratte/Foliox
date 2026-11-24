@@ -5,7 +5,7 @@ import landkreuzer.de.foliox.Enum.MediaType;
 import landkreuzer.de.foliox.Enum.MediaLanguage;
 import landkreuzer.de.foliox.Enum.MediaCondition;
 
-
+import java.util.List;
 import java.util.UUID;
 
 public record Media(
@@ -21,6 +21,23 @@ public record Media(
         MediaCondition condition,
         Boolean available
 ) {
+
+
+    public Media(List<String> item) {
+        this(
+                UUID.fromString(item.get(0)),
+                item.get(1),
+                item.get(2),
+                item.get(3),
+                item.get(4),
+                MediaType.valueOf(item.get(5)),
+                MediaLanguage.valueOf(item.get(6)),
+                item.get(7),
+                MediaCategory.valueOf(item.get(8)),
+                MediaCondition.valueOf(item.get(9)),
+                Boolean.parseBoolean(item.get(10))
+        );
+    }
 
     public UUID getUuid() {
         return uuid;
@@ -50,9 +67,13 @@ public record Media(
         return language;
     }
 
-    public String getBorrowed() {return borrowed;}
+    public String getBorrowed() {
+        return borrowed;
+    }
 
-    public String getBorrowedText() {return borrowed == null || borrowed.isBlank() ? "n/d" : borrowed;}
+    public String getBorrowedText() {
+        return borrowed == null || borrowed.isBlank() ? "n/d" : borrowed;
+    }
 
     public MediaCategory getCategory() {
         return category;
@@ -66,4 +87,3 @@ public record Media(
         return available;
     }
 }
-

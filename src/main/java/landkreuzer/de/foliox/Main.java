@@ -1,21 +1,18 @@
 package landkreuzer.de.foliox;
 
+import java.io.File;
+import java.util.*;
+
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.util.*;
-
-import static javafx.scene.layout.Border.EMPTY;
 
 public class Main extends Application {
 
@@ -43,7 +40,7 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
 
 
-        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("bildoderso.png", tableColumns));
+        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("ImagePlaceholder.png"));
         SplitPane.setResizableWithParent(split, false);
         split.setMinWidth(300);
         split.setPrefWidth(400);

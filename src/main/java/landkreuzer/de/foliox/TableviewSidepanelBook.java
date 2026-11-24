@@ -1,18 +1,20 @@
 package landkreuzer.de.foliox;
 
+import java.net.URL;
+
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 
-import java.net.URL;
 
 public class TableviewSidepanelBook {
 
-    public static VBox create(String imageCover, Media displayedInfo) {
+
+    public static VBox create(String defImageName) {
         VBox root = new VBox(10);
         root.setFillWidth(true);
         root.setPadding(new Insets(10));
@@ -23,6 +25,19 @@ public class TableviewSidepanelBook {
         content.setPadding(new Insets(10));
         content.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
 
+        URL resource = TableviewSidepanelBook.class.getResource("/landkreuzer/de/foliox/" + defImageName);
+        if(resource == null) {
+            ImageView defImage = new ImageView(new Image(resource.toExternalForm()));
+            defImage.setPreserveRatio(true);
+            defImage.setFitWidth(150);
+            content.getChildren().add(defImage);
+        } else {
+            Popup fileNotFoundPopup = new Popup();
+            fileNotFoundPopup.show(primaryStage);
+        }
+
+
+        /*
         URL resource = TableviewSidepanelBook.class.getResource("/landkreuzer/de/foliox/" + imageCover);
         if (resource != null) {
             ImageView img = new ImageView(new Image(resource.toExternalForm()));
@@ -33,6 +48,7 @@ public class TableviewSidepanelBook {
             System.out.println("Bild nicht gefunden: " + imageCover);
         }
 
+
         VBox infoBox = new VBox(5);
         VBox.setVgrow(infoBox, Priority.ALWAYS);
         for (String info : displayedInfo) {
@@ -40,9 +56,8 @@ public class TableviewSidepanelBook {
         }
         content.getChildren().add(infoBox);
 
-
+*/
         // Das war die einzigste Lösung die ich nach 2 Stunden gefunden hab
-
         ScrollPane scrollPane = new ScrollPane(content);
         scrollPane.setFitToWidth(true);
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
