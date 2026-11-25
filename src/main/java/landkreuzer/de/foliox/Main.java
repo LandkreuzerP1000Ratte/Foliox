@@ -28,7 +28,7 @@ public class Main extends Application {
 
         BorderPane root = new BorderPane();
 
-        Scene scene = new Scene(root, 1920, 1080, Color.web("#313131"));
+        Scene scene = new Scene(root, root.getWidth(), root.getHeight(), Color.web("#313131"));
         scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
 
         primaryStage.setTitle("Foliox");

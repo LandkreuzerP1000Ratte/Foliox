@@ -22,7 +22,7 @@ public class TableviewSidepanelBook {
         VBox root = new VBox(10);
         root.setFillWidth(true);
         root.setPadding(new Insets(10));
-        root.setMinWidth(300);
+        root.setMaxWidth(550);
         root.setPrefWidth(400);
 
         VBox content = new VBox(20);
@@ -41,7 +41,6 @@ public class TableviewSidepanelBook {
             popupErrorDisplay(primaryStage, popupLabel);
         }
 
-
         // Das war die einzigste Lösung die ich nach 2 Stunden gefunden hab
         ScrollPane scrollPane = new ScrollPane(content);
         scrollPane.setFitToWidth(true);
@@ -50,6 +49,7 @@ public class TableviewSidepanelBook {
         root.getChildren().add(scrollPane);
         return root;
     }
+
 
     private static void popupErrorDisplay(Stage stage, Label errorLabel) {
 
