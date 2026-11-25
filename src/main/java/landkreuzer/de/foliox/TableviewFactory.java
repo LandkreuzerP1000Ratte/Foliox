@@ -3,7 +3,6 @@ package landkreuzer.de.foliox;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -35,9 +34,6 @@ public final class TableviewFactory {
 
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldItem, newItem) -> {
 
-            System.out.println(Arrays.toString(newItem));
-
-            //Media selectedMediaContent = new Media();
         });
 
 

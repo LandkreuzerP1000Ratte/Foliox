@@ -2,19 +2,23 @@ package landkreuzer.de.foliox;
 
 import java.net.URL;
 
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class TableviewSidepanelBook {
 
 
-    public static VBox create(String defImageName) {
+    public static VBox create(String defImageName, Stage primaryStage) {
         VBox root = new VBox(10);
         root.setFillWidth(true);
         root.setPadding(new Insets(10));
@@ -26,37 +30,18 @@ public class TableviewSidepanelBook {
         content.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         URL resource = TableviewSidepanelBook.class.getResource("/landkreuzer/de/foliox/" + defImageName);
-        if(resource == null) {
+        if(resource != null) {
             ImageView defImage = new ImageView(new Image(resource.toExternalForm()));
             defImage.setPreserveRatio(true);
             defImage.setFitWidth(150);
             content.getChildren().add(defImage);
         } else {
-            Popup fileNotFoundPopup = new Popup();
-            fileNotFoundPopup.show(primaryStage);
+            Label popupLabel = new Label("Default Image was not found: " + defImageName);
+            popupLabel.setStyle("-fx-background-color: #39b0bf; -fx-padding: 8; -fx-border-color: black;");
+            popupErrorDisplay(primaryStage, popupLabel);
         }
 
 
-        /*
-        URL resource = TableviewSidepanelBook.class.getResource("/landkreuzer/de/foliox/" + imageCover);
-        if (resource != null) {
-            ImageView img = new ImageView(new Image(resource.toExternalForm()));
-            img.setPreserveRatio(true);
-            img.setFitWidth(150);
-            content.getChildren().add(img);
-        } else {
-            System.out.println("Bild nicht gefunden: " + imageCover);
-        }
-
-
-        VBox infoBox = new VBox(5);
-        VBox.setVgrow(infoBox, Priority.ALWAYS);
-        for (String info : displayedInfo) {
-            infoBox.getChildren().add(new Label(info));
-        }
-        content.getChildren().add(infoBox);
-
-*/
         // Das war die einzigste Lösung die ich nach 2 Stunden gefunden hab
         ScrollPane scrollPane = new ScrollPane(content);
         scrollPane.setFitToWidth(true);
@@ -64,5 +49,19 @@ public class TableviewSidepanelBook {
 
         root.getChildren().add(scrollPane);
         return root;
+    }
+
+    private static void popupErrorDisplay(Stage stage, Label errorLabel) {
+
+        Popup fileNotFoundPopup = new Popup();
+
+        fileNotFoundPopup.getContent().add(errorLabel);
+        fileNotFoundPopup.setAutoHide(true);
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(15));
+        delay.setOnFinished(e -> fileNotFoundPopup.hide());
+        delay.play();
+
+        fileNotFoundPopup.show(stage, stage.getX() + stage.getWidth() - 40, stage.getY() + stage.getHeight() - 40);
     }
 }

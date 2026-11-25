@@ -26,21 +26,26 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        BorderPane root = new BorderPane();
+
+        Scene scene = new Scene(root, 1920, 1080, Color.web("#313131"));
+        scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
+
+        primaryStage.setTitle("Foliox");
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreen(false);
+        primaryStage.setFullScreenExitHint("");
+        primaryStage.show();
+
         File bookFile = new File(System.getProperty("user.dir"),
                 "src/main/resources/landkreuzer/de/foliox/formated_books.txt");
 
         String[][] allRows = FileEditor.readAll(bookFile).toArray(new String[0][]);
 
         TableView<String[]> table = TableviewFactory.create(tableColumns, allRows);
-
-        BorderPane root = new BorderPane();
         table.setMinWidth(400);
 
-        Scene scene = new Scene(root, 1920, 1080, Color.web("#313131"));
-        scene.getStylesheets().add(getClass().getResource("prism-dark.css").toExternalForm());
-
-
-        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("ImagePlaceholder.png"));
+        SplitPane split = new SplitPane(table, TableviewSidepanelBook.create("ImagePlaceholder.png", primaryStage));
         SplitPane.setResizableWithParent(split, false);
         split.setMinWidth(300);
         split.setPrefWidth(400);
@@ -54,12 +59,5 @@ public class Main extends Application {
 
         root.setLeft(new StagePanel(root, pages));
         root.setCenter(split);
-
-
-        primaryStage.setTitle("Foliox");
-        primaryStage.setScene(scene);
-        primaryStage.setFullScreen(false);
-        primaryStage.setFullScreenExitHint("");
-        primaryStage.show();
     }
 }
